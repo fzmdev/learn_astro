@@ -1,17 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About</title>
-	</head>
-	<body>
-    <h4>about页面</h4>
-    <a href="/">首页</a>
-		<a href="/about">about</a>
-		<a href="/blog">blog</a>
-    <p>这是一个p段落</p>
-  </body>
-</html>
+const pageTitle = "关于我-变量形式"
+
+const identity = {
+  firstName: "莎拉",
+  country: "加拿大",
+  occupation: "技术撰稿人",
+  hobbies: ["摄影", "观鸟", "棒球"],
+}
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"]
+
+const skillColor = "navy"
+const fontWeight = "bold"
+---
+
+<!-- 使用css变量 -->
+<style define:vars={{ skillColor, fontWeight }}>
+  h4 {
+    color: purple;
+    font-size: 2rem;
+  }
+
+  .skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+  }
+</style>
+
+<BaseLayout pageTitle={pageTitle}>
+  <h4>about页面</h4>
+  <p>这是一个p段落</p>
+  <p>以下是我的描述:</p>
+  <ul>
+    <li>姓名: {identity.firstName}</li>
+    <li>国家: {identity.country}</li>
+    <li>职业: {identity.occupation}</li>
+    {
+      identity.hobbies.length >= 2 && (
+        <li>
+          2个爱好: {identity.hobbies[0]}和{identity.hobbies[1]}
+        </li>
+      )
+    }
+  </ul>
+  <p>我的技能:</p>
+  <ul>
+    {skills.map((skil) => <li class="skill">{skil}</li>)}
+  </ul>
+</BaseLayout>
