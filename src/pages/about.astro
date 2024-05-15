@@ -12,12 +12,17 @@ const identity = {
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"]
 
+// 定义css变量
 const skillColor = "navy"
 const fontWeight = "bold"
+const borderStyle = "1px solid red"
+
+const cssStyle = { skillColor, fontWeight, borderStyle }
 ---
 
-<!-- 使用css变量 -->
-<style define:vars={{ skillColor, fontWeight }}>
+<!-- 使用css变量, 就是给vars传递一个对象 -->
+<!-- <style define:vars={{ skillColor, fontWeight, borderStyle }}> -->
+<style define:vars={cssStyle}>
   h4 {
     color: purple;
     font-size: 2rem;
@@ -26,14 +31,16 @@ const fontWeight = "bold"
   .skill {
     color: var(--skillColor);
     font-weight: var(--fontWeight);
+    border: var(--borderStyle);
   }
 </style>
 
 <BaseLayout pageTitle={pageTitle}>
-  <h4>about页面</h4>
+  <h4>about页面-h4</h4>
   <p>这是一个p段落</p>
   <p>以下是我的描述:</p>
   <ul>
+    <li>姓名: {identity.firstName}</li>
     <li>姓名: {identity.firstName}</li>
     <li>国家: {identity.country}</li>
     <li>职业: {identity.occupation}</li>

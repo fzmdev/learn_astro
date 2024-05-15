@@ -6,7 +6,7 @@ const pageTitle = "我的首页"
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2>h2首页</h2>
+  <h4>h4首页</h4>
   <!-- client:load 指令告诉 Astro 在页面加载时将其 JavaScript 发送并重新运行到客户端上，使组件可交互 -->
   <Greeting client:load messages={['hi', 'hello', 'welcome', '你好啊']} />
 </BaseLayout>
